@@ -27,3 +27,11 @@ router.get('/:id', (req, res) => {
   .catch((err) => res.status(500).json(err));
 });
 
+router.post('/', (req, res) => {
+    Category.create({
+      category_name: req.body.category_name
+    })
+    .then(data => res.json(data))
+    .catch((err) => res.status(500).json(err));
+  });
+  
