@@ -1,0 +1,19 @@
+{
+  "name": "mjm-task-master",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennyk1989/MJM-Task-Master.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennyk1989/MJM-Task-Master/issues"
+  },
+  "homepage": "https://github.com/jennyk1989/MJM-Task-Master#readme"
+}
