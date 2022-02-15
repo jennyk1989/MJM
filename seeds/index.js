@@ -1,20 +1,18 @@
-const { Category } = require('../models');
+const seedCategories = require('./category-seeds');
+const seedTasks = require('./task-seeds');
 
-const categoryData = [
-  {
-    category_name: 'Workout',
-  },
-  {
-    category_name: 'Clean',
-  },
-  {
-    category_name: 'Eat',
-  },
-  {
-    category_name: 'Send',
-  },
-];
+const sequelize = require('../config/connection');
 
-const seedCategories = () => Category.bulkCreate(categoryData);
+const seedAll = async () => {
+  await sequelize.sync({ force: true });
+  console.log('\n----- DATABASE SYNCED -----\n');
+  await seedCategories();
+  console.log('\n----- CATEGORIES SEEDED -----\n');
 
-module.exports = seedCategories;
+  await seedTasks();
+  console.log('\n----- TASKS SEEDED -----\n');
+
+  process.exit(0);
+};
+
+seedAll();
