@@ -27,8 +27,8 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-                  <a class="button is-info">Login</a>
-                  <a class="button is-info">Logout</a>
+                  <a class="button is-info" id="login-btn">Login</a>
+                  <a class="button is-info" id="logout-btn">Logout</a>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Hello, Dumbass.
+                    Hello.
                 </h1>
                 <h2 class="subtitle">
                     I hope you are having a productive day!
@@ -58,7 +58,10 @@
                     <button class="button is-danger">Delete a Task</button>
                 </div>
 
-                
+                <div>
+                    <div id="openweathermap-widget-22"></div>
+                    <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 22,cityid: '4726206',appid: 'e0eb28e00a4488aba3663f43131eda5c',units: 'metric',containerid: 'openweathermap-widget-22',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+                </div>
             </div>
 <!-- ************** Little Boxes ************** -->
             <div class="column is-9">
@@ -187,5 +190,5 @@
         </div>
     </div>
     <script async type="text/javascript" src="../js/bulma.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </html>
