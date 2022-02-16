@@ -59,7 +59,7 @@
                     <button class="button is-info">Create Task</button>
                     <button class="button is-danger">Delete a Task</button>
                 </div>
-
+<!-- new tasks here -->
                 <div class="card m-3" id="create-task-card">
                     <header class="card-header has-background-info">
                         <p class="card-header-title has-text-white">Create New Task</p>
@@ -69,7 +69,7 @@
                         <div class="field">
                             <label class="label">Task Name</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="name of task here">
+                                <input class="input" name='task-name' type="text" placeholder="name of task here">
                             </div>
                         </div>
                     </div>
@@ -81,6 +81,9 @@
                     </div>
                 </div>
 
+
+
+<!-- select tasks hereå -->
                 <div class="card m-3" id="select-task-card">
                     <header class="card-header has-background-success">
                         <p class="card-header-title has-text-white">Select a Task to Add</p>
@@ -167,8 +170,8 @@
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <div class="buttons">
-                                    <button class="button is-fullwidth is-success">Add a Task</button>
-                                    <button class="button is-fullwidth is-info">Create Custom Task</button>
+                                    <button class="button is-fullwidth is-success" id="add-task-btn">Add a Task</button>
+                                    <button class="button is-fullwidth is-info"id="create-task-btn">Create Custom Task</button>
                                 </div>
                             </article>
                         </div>
@@ -225,8 +228,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
             
 <script async type="text/javascript" src="../js/bulma.js"></script>
