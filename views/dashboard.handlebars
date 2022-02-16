@@ -2,7 +2,7 @@
 <div class="columns">
     <div class="column is-3 mt-6">
         <div class="buttons">
-            <button class="button is-success">Add a Task</button>
+            <button class="button is-success" id="show-tasks">Add a Task</button>
             <button class="button is-info">Create Task</button>
             <button class="button is-danger">Delete a Task</button>
         </div>
@@ -45,39 +45,28 @@
                         </p>
                     </header>
 
+                    
                     <div class="card-table">
                         <div class="content">
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
+
+
+                                    {{#each tasktopost}}
                                     <tr>
                                         <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Make Bed</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                        <td>{{task_name}}</td>
+                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
                                     </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Shower</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Leg Day</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Wash Dishes</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Quit Life</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                    </tr>
+                                    {{/each}}
+
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+
                 </div>
             </div>
 
