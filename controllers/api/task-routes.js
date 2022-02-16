@@ -43,4 +43,27 @@ router.get('/:id', (req, res) => {
     });
   });
   
- 
+  router.put('/:id', (req, res) => {
+    Task.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then(taskdata => res.json(taskdata))
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  
+  router.delete('/:id', (req, res) => {
+    Task.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(taskdata => res.json(taskdata))
+    .catch((err) => res.status(500).json(err));
+  });
+  
+  module.exports = router;
+  

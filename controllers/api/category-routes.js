@@ -35,3 +35,30 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(500).json(err));
   });
   
+  router.put('/:id', (req, res) => {
+    Category.update(
+      {
+        category_name: req.body.category_name
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+    .then(data => res.json(data))
+    .catch((err) => res.status(500).json(err));
+  });
+  
+  router.delete('/:id', (req, res) => {
+    Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(data => res.json(data))
+    .catch((err) => res.status(500).json(err));
+  });
+  
+  module.exports = router;
+  
