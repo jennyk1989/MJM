@@ -47,14 +47,12 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// CREATE new user 
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     })
-    // store user data during session 
     .then(dbUserData => {
     req.session.save(() => {
         req.session.user_id = dbUserData.id;
@@ -142,3 +140,8 @@ router.delete('/:id', withAuth, (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
