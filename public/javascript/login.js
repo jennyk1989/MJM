@@ -5,7 +5,7 @@ async function loginByUser(event) {
     const password = document.getElementById('password-login').value.trim();
   
     if (username && password) {
-      const response = await fetch('/users/', {
+      const response = await fetch('/api/users', {
         method: 'post',
         body: JSON.stringify({
           username,

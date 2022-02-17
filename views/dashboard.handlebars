@@ -25,8 +25,81 @@
             </div>
         </div>
 
-        {{!-- *********** Select a Task Card ***********--}}
-        <div class="card m-3" id="select-task-card">
+        
+    </div>
+
+            
+{{!--************** Little Boxes **************--}}
+    <div class="column is-9 mt-6">
+        <section class="info-tiles">
+            <div class="tile is-ancestor has-text-centered">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <span class="icon is-large">
+                            
+                                <i class="fas fa-book fa-4x"></i>
+                                
+                        </span>
+                    </article>
+                </div>
+                
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <span class="icon is-large">
+                            
+                                <i class="fas fa-sticky-note fa-4x"></i>
+                                
+                        </span>
+                    </article>
+                </div>
+
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <span class="icon is-large">
+                            
+                                <i class="fas fa-headphones fa-4x"></i>
+                                
+                        </span>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+        {{!--*********** TASK TO DO ***********--}}
+        <div class="columns">
+            <div class="column is-6">
+                <div class="card events-card">
+                    <header class="card-header">
+                        <p class="card-header-title is-centered">
+                            To Do
+                        </p>
+                    </header>
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-fullwidth is-striped">
+                                <tbody>
+                                    {{!--$$$$$$$ tasks from db $$$$$$$--}}
+                                    {{#each tasktopost}}
+                                        <tr class="notabulma" onclick="remove(this)">
+                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                            <td>{{task_name}}</td>
+                                            {{!--========== done button ==========--}}
+                                            <td class="level-right">
+                                                <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
+                                                <a class="button is-small is-light is-primary" id="done-btn">Done</a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>                  
+            </div>
+
+
+            <div class="column is-6">
+                <div class="card" id="select-task-card">
             <header class="card-header has-background-success">
                 <p class="card-header-title has-text-white">Select a Task to Add</p>
             </header>
@@ -89,67 +162,10 @@
                 </div>
             </div>
         </div>
-    </div>
-
-            
-{{!--************** Little Boxes **************--}}
-    <div class="column is-9">
-        <section class="info-tiles">
-            <div class="tile is-ancestor has-text-centered">
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title"> Date </p>
-                        <p class="subtitle"> 9/11/22 </p>
-                    </article>
-                </div>
-                
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">Tears</p>
-                        <p class="subtitle">29</p>
-                    </article>
-                </div>
-
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">Tears</p>
-                        <p class="subtitle">29</p>
-                    </article>
-                </div>
-
             </div>
-        </section>
-        {{!--*********** TASK TO DO ***********--}}
-        <div class="columns">
-            <div class="column is-6">
-                <div class="card events-card">
-                    <header class="card-header">
-                        <p class="card-header-title is-centered">
-                            To Do
-                        </p>
-                    </header>
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-                                    {{!--$$$$$$$ tasks from db $$$$$$$--}}
-                                    {{#each tasktopost}}
-                                        <tr class="notabulma" onclick="remove(this)">
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>{{task_name}}</td>
-                                            {{!--========== done button ==========--}}
-                                            <td class="level-right">
-                                                <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
-                                                <a class="button is-small is-light is-primary" id="done-btn">Done</a>
-                                            </td>
-                                        </tr>
-                                    {{/each}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>                  
-            </div>
+
+
+
         </div>
     </div>
 </div>
