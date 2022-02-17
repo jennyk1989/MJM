@@ -7,8 +7,8 @@ const routes = require('./controllers/');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//connect to the db
-const sequelize = require('/Users/jenniferkeene/Documents/GitHub/MJM-Task-Master/config/connection.js');
+//connect to the db.../Users/jenniferkeene/Documents/GitHub/MJM-Task-Master
+const sequelize = require('/config/connection.js');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {

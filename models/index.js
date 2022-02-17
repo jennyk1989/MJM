@@ -1,32 +1,32 @@
 //routes and db schema
 const User = require('./User');
-const Post =  require('./Post');
-const Comment = require('./Comment');
+const Days =  require('./Days');
+const Tasks = require('./Tasks');
 
 
 //Associatins between models
 
-User.hasMany(Post, {
+User.hasMany(Days, {
     foreignKey: 'user_id'
 });
 
-Post.belongsTo(User, {
+Days.belongsTo(User, {
     foreignKey: 'user_id'
 });
-Comment.belongsTo(Post, {
-    foreignKey: 'post_id',
+Tasks.belongsTo(Days, {
+    foreignKey: 'day_id',
     oneDelete: 'cascade',
     hooks: true
 });
-User.hasMany(Comment, {
+User.hasMany(Tasks, {
     foreignKey: "user_id",
     onDelete: 'cascade',
     hook: true
 });
-Post.hasMany(Comment, {
-    foreignkey: 'post_id',
+Days.hasMany(Tasks, {
+    foreignkey: 'day_id',
     onDelet: 'cascade',
     hook: true
 });
 
-module.exports  = {User, Post, Comment};
+module.exports  = {User, Days, Tasks};

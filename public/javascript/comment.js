@@ -1,4 +1,4 @@
-async function commentFormHandler(event) {
+async function taskFormHandler(event) {
     event.preventDefault();
     const comment_text = document
           .querySelector('textarea[name="comment-body"]')
@@ -6,12 +6,12 @@ async function commentFormHandler(event) {
     const post_id = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1
     ];
-    if (comment_text) {
-        const response  = await fetch("/api/comments", {
+    if (task_text) {
+        const response  = await fetch("/api/tasks", {
             method: "POST",
             body: JSON.stringify({
-                post_id,
-                comment_text,
+                day_id,
+                task_text,
             }),
             headers: {
                 "Context-Type": "applictation/json",
@@ -25,6 +25,6 @@ async function commentFormHandler(event) {
     }
 }
 
-document.querySelector(".comment-form").addEventListener("submit", commentFormHandler);
+document.querySelector(".task-form").addEventListener("submit", taskFormHandler);
 
 

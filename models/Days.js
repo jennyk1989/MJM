@@ -1,6 +1,6 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-
+//To be made to fit with Tasks
 class Days extends Model{}
 Days.init(
     {
@@ -36,4 +36,5 @@ Days.init(
     underscored: true,
     modelName: 'days'
     },
-)
+);
+module.exports = Days;
