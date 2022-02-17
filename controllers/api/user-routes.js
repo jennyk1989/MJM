@@ -3,7 +3,7 @@ const { User, Task } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-router.get('/',  (req, res) => {
+router.get('/users',  (req, res) => {
     User.findAll({
         attributes: { exclude: ['[password']}
     })
@@ -15,7 +15,7 @@ router.get('/',  (req, res) => {
 });
 
 
-router.get('/:id', (req, res) => {
+router.get('users/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/users', (req, res) => {
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/users', (req, res) => {
     User.findOne({
         where: {
             email: req.body.email
@@ -81,7 +81,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.post('/', withAuth, (req, res) => {
+router.post('/users', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();

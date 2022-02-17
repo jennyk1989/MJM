@@ -2,11 +2,11 @@ const router = require('express').Router();
 const { User, Task } = require('../models');
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
+const fs = require('fs');
 
 router.get('/', (req, res) => {
     res.render('homepage');
 });
-
 
 router.get('/',  (req, res) => {
     User.findAll({
