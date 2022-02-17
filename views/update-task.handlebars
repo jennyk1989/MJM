@@ -1,0 +1,27 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="column is-12">
+            <div class="card m-3">
+                <header class="card-header has-background-info">
+                    <p class="card-header-title has-text-white">Update or Delete Task</p>
+                </header>
+                {{!-- <!-- task input --> --}}
+                <div class="card-content">
+                    <div class="field">
+                        <label class="label">New Task</label>
+                        <div class="control">
+                            <input class="input" id="post-title" type="text" placeholder="title of post" value="{{}}">
+                        </div>
+                    </div>
+                </div>
+                {{!-- <!-- update & delete button --> --}}
+                <div class="card-content">
+                    <div class="buttons">
+                        <button class="button is-success" id="update-btn">Update Task</button>
+                        <button class="button is-danger" id="delete-btn">Delete Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>

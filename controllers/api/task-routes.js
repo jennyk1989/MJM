@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Category, Task } = require('../../models');
 
-//rendering tasks in database
+// rendering tasks in database
 router.get('/', (req, res) => {
     Task.findAll({
         // where: {
@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     })
 });
 
+// get a single task
 router.get('/:id', (req, res) => {
     Task.findOne({
       where: {
