@@ -52,4 +52,20 @@ router.get('/edit/:id', (req, res) => {
     })
 });
 
+// removing a task as done 
+router.delete(':id', (req,res) => {
+  Task.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(data => {
+    console.log(data);
+    res.json(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+});
 module.exports = router;

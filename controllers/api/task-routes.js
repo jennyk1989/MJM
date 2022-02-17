@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 });
 
 // updating a task 
-router.put('/:id', (req, res) => {
+router.put('edit/:id', (req, res) => {
   Task.update({
     task_name: req.body.task_name
   },
@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
 });
 
 // removing a task 
-router.delete('/:id', (req,res) => {
+router.delete('edit/:id', (req,res) => {
   Task.destroy({
     where: {
       id: req.params.id

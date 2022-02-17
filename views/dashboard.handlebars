@@ -134,7 +134,7 @@
                                 <tbody>
                                     {{!--$$$$$$$ tasks from db $$$$$$$--}}
                                     {{#each tasktopost}}
-                                        <tr>
+                                        <tr class="notabulma" onclick="remove(this)">
                                             <td width="5%"><i class="fa fa-bell-o"></i></td>
                                             <td>{{task_name}}</td>
                                             {{!--========== done button ==========--}}
@@ -154,3 +154,4 @@
     </div>
 </div>
 <script src="/javascript/add-task.js"></script>
+<script src="/javascript/done-task.js"></script>
