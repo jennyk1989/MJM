@@ -1,5 +1,6 @@
-{{!-- renders sidebar menu and widget --}}
-<div class="columns">
+<!-- ********* SIDE BAR MENU ********** -->
+    <div class="container">
+        <div class="columns">
 
             <div class="column is-3 mt-6">
 <!-- new tasks here -->
@@ -12,7 +13,7 @@
                         <div class="field">
                             <label class="label">Task Name</label>
                             <div class="control">
-                                <input class="input" name='task-name'type="text" placeholder="name of task here">
+                                <input class="input" name='task-name' type="text" placeholder="name of task here">
                             </div>
                         </div>
                     </div>
@@ -26,7 +27,7 @@
 
 
 
-<!-- select tasks hereå -->
+<!-- select tasks here -->
                 <div class="card m-3" id="select-task-card">
                     <header class="card-header has-background-success">
                         <p class="card-header-title has-text-white">Select a Task to Add</p>
@@ -94,83 +95,4 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-            
-<!-- ************** Little Boxes ************** -->
-            <div class="column is-9">
-                <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">Date</p>
-                                <p class="subtitle">9/11/22</p>
-                            </article>
-                        </div>
-                        
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <div class="buttons">
-                                    <button class="button is-fullwidth is-success" id="add-task-btn">Add a Task</button>
-                                    <button class="button is-fullwidth is-info"id="create-task-btn">Create Custom Task</button>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">Tears</p>
-                                <p class="subtitle">29</p>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="columns">
-                    <div class="column is-6">
-                        <div class="card events-card">
-                            <header class="card-header">
-                                <p class="card-header-title is-centered">
-                                    To Do
-                                </p>
-                            </header>
-
-                            <div class="card-table">
-                                <div class="content">
-                                    <table class="table is-fullwidth is-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Make Bed</td>
-                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Shower</td>
-                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Leg Day</td>
-                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Wash Dishes</td>
-                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Quit Life</td>
-                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                         
-        </div>
-    </div>
-</div>
