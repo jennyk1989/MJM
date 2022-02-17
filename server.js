@@ -5,9 +5,9 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
 
+const PORT = process.env.PORT || 8080;
 const app = express();
-//const PORT = process.env.PORT || 3001;
-
+app.set("port", PORT);
 // parse requests in JSON format
 app.use(express.json()); 
 // parse requests in url format
