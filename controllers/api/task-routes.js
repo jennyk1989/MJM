@@ -1,12 +1,11 @@
 const router = require('express').Router();
-const { Category, Task } = require('../../models');
+const { Task } = require('../../models');
+const withAuth = require('../../utils/auth');
+const sequelize = require('../../config/connection');
 
-// rendering tasks in database
+// get tasks
 router.get('/', (req, res) => {
     Task.findAll({
-        // where: {
-        //     user_id: req.session.user_id
-        // },
         attributes: ['id','task_name'],
     })
     .then(dbTasks => {
@@ -22,56 +21,47 @@ router.get('/', (req, res) => {
 
 // get a single task
 router.get('/:id', (req, res) => {
-    Task.findOne({
-      where: {
-        id: req.params.id
-      },
-      attributes: ['id', 'task_name']
-    })
-    .then(data => res.json(data))
-    .catch((err) => res.status(500).json(err));
-  });
+  Task.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: ['id', 'task_name']
+  })
+  .then(data => res.json(data))
+  .catch((err) => res.status(500).json(err));
+});
 
-// creating custom task (body received from add-task.js)
-router.post('/', (req, res) => {
-    Task.create({
-        task_name: req.body.task_name
-    })
-    .then(data => {
-        console.log(data);
-        res.json(data)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-})
-  
-  router.put('/:id', (req, res) => {
-    Task.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
-    .then(taskdata => res.json(taskdata))
-      .catch((err) => {
-        res.status(400).json(err);
-      });
+// updating a task 
+router.put('/:id', (req, res) => {
+  Task.update({
+    task_name: req.body.task_name
+  },
+  {
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then(taskdata => res.json(taskdata))
+  .catch((err) => {
+      res.status(500).json(err);
   });
+});
 
 // removing a task 
 router.delete('/:id', (req,res) => {
-    Task.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(data => {
-        console.log(data);
-        res.json(data);
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
+  Task.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(data => {
+    console.log(data);
+    res.json(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 });
 
 module.exports = router;

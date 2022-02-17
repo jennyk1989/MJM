@@ -6,11 +6,12 @@
                     <p class="card-header-title has-text-white">Update or Delete Task</p>
                 </header>
                 {{!-- <!-- task input --> --}}
+                {{!-- tasktoedit from dashboard-routes --}}
                 <div class="card-content">
                     <div class="field">
                         <label class="label">New Task</label>
                         <div class="control">
-                            <input class="input" id="post-title" type="text" placeholder="title of post" value="{{}}">
+                            <input class="input" id="updated-task" type="text" placeholder="new task here" value="{{tasktoedit.task_name}}">
                         </div>
                     </div>
                 </div>
@@ -25,3 +26,6 @@
         </div>      
     </div>
 </section>
+
+<script src="/javascript/delete-task.js"></script>
+<script src="/javascript/update.js"></script>
