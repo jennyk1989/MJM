@@ -3,80 +3,44 @@ const { User, Category, Task } = require('../models');
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
 
-router.get('/', withAuth, (req, res) => {
-    Category.findAll({
-      where: {
-        user_id: req.session.user_id
-      },
-      attributes: [
-        'id',
-        'category_text',
-        'title',
-        'created_at'
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'task_text', 'category_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
+//rendering tasks in database
+router.get('/', (req, res) => {
+    Task.findAll({
+        // where: {
+        //     user_id: req.session.user_id
+        // },
+        attributes: [
+            'task_name'
+        ],
     })
-      .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('dashboard', { posts, loggedIn: true });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-
-router.get('/edit/:id', withAuth, (req, res) => {
-    Post.findOne({
-    where: {
-    id: req.params.id
-    },
-    attributes: ['id', 
-                'category_text', 
-                'title',
-                'created_at'
-            ],
-    include: [
-    {
-        model: User,
-        attributes: ['username']
-    },
-    {
-        model: Comment,
-        attributes: ['id', 'task_text', 'category_id', 'user_id', 'created_at'],
-        include: {
-        model: User,
-        attributes: ['username']
-        }
-    }
-    ]
-})
-    .then(dbPostData => {
-    const post = dbPostData.get({ plain: true });
-    res.render('edit-task', { Task , loggedIn: true }); 
+    .then(dbTasks => {
+        //first serialize the dbTasks data
+        const tasktopost = dbTasks.map(task => task.get({plain: true}));
+        res.render('dashboard', {tasktopost})
     })
     .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-    });
+        console.log(err);
+        res.status(500).json(err);
+    })
 });
 
-// rendering newpost page 
-router.get('/newtask', (req, res) => {
-  res.render('new-task');
-});
+// adding a task
+
+
+// creating custom task (body received from add-task.js)
+router.post('/', (req, res) => {
+    Task.create({
+        task_name: req.body.task_name
+    })
+    .then(data => res.json(data))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
+
+// removing a task 
+
+
 
 module.exports = router;

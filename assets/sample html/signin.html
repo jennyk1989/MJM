@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MJM</title>
+    <title>JLK</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="container">
@@ -22,12 +23,11 @@
                 About Us
               </a>
             </div>
-      
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-                  <a class="button is-info">Login</a>
-                  <a class="button is-info">Logout</a>
+                  <a class="button is-info" id="login-btn">Login</a>
+                  <a class="button is-info" id="logout-btn">Logout</a>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
         </div>
       </nav>
       
-      <section class="hero is-info welcome is-small">
+    <section class="hero is-info welcome is-small">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -48,11 +48,16 @@
         </div>
     </section>
 
-    <div class="container">
-
-        {{!-- insert hbs here --}}
-        {{{ body }}}
-        
-    </div>
+    <section class="hero is-medium">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title has-text-centered">
+                    Please Login or Signup to continue!
+                </h1>
+            </div>
+        </div>
+    </section>
 </body>
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </html>

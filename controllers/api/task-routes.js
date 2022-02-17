@@ -32,10 +32,11 @@ router.get('/:id', (req, res) => {
     .catch((err) => res.status(500).json(err));
   });
   
+  // route for adding a task (body received from add-task.js)
   router.post('/', (req, res) => {
-    Task.create(
-      req.body
-    )
+    Task.create({
+      task_name: req.body.task_name
+    })
     .then((taskdata) => res.status(200).json(taskdata))
     .catch((err) => {
       console.log(err);
