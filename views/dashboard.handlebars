@@ -1,124 +1,176 @@
 {{!-- renders sidebar menu and widget --}}
 <div class="columns">
-    <div class="column is-3 mt-6">
-        <div class="buttons">
-            <button class="button is-success" id="show-tasks">Add a Task</button>
-            <button class="button is-info">Create Task</button>
-            <button class="button is-danger">Delete a Task</button>
-        </div>
-    </div>
+
+            <div class="column is-3 mt-6">
+<!-- new tasks here -->
+                <div class="card m-3" id="create-task-card">
+                    <header class="card-header has-background-info">
+                        <p class="card-header-title has-text-white">Create New Task</p>
+                    </header>
+                    <!-- task name -->
+                    <div class="card-content">
+                        <div class="field">
+                            <label class="label">Task Name</label>
+                            <div class="control">
+                                <input class="input" name='task-name'type="text" placeholder="name of task here">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- create button -->
+                    <div class="card-content">
+                        <div class="field">
+                            <button class="button is-info">Create</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+<!-- select tasks hereå -->
+                <div class="card m-3" id="select-task-card">
+                    <header class="card-header has-background-success">
+                        <p class="card-header-title has-text-white">Select a Task to Add</p>
+                    </header>
+
+
+                    <!-- task name -->
+                    <div class="card-content">
+                        <div class="panel is-info is-flex-direction-row" id="task-panel">
+                            <!-- database tasks here -->
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-dumbbell" aria-hidden="true"></i>
+                                </span>
+                                Work out
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-shower" aria-hidden="true"></i>
+                                </span>
+                                Clean
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-book-reader" aria-hidden="true"></i>
+                                </span>
+                                Study
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-dog" aria-hidden="true"></i>
+                                </span>
+                                Walk pet
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                </span>
+                                Shop
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-gamepad" aria-hidden="true"></i>
+                                </span>
+                                Play Games
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-basketball-ball" aria-hidden="true"></i>
+                                </span>
+                                Watch Game
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-tv" aria-hidden="true"></i>
+                                </span>
+                                Watch Show
+                            </a>
+                            <a class="panel-block has-background-success-light">
+                                <span class="panel-icon">
+                                    <i class="fas fa-mitten" aria-hidden="true"></i>
+                                </span>
+                                Cook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            
 <!-- ************** Little Boxes ************** -->
-    <div class="column is-9">
-        <section class="info-tiles">
-            <div class="tile is-ancestor has-text-centered">
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">Date</p>
-                        <p class="subtitle">9/11/22</p>
-                    </article>
-                </div>
-                
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">Breakdowns</p>
-                        <p class="subtitle">3</p>
-                    </article>
-                </div>
-
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">Tears</p>
-                        <p class="subtitle">29</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-<!-- ********************* TASKS ********************** -->
-        <div class="columns">
-            <!-- ********************* TODO TASKS ********************** -->
-            <div class="column is-6">
-                <div class="card events-card">
-                    <header class="card-header">
-                        <p class="card-header-title is-centered">
-                            To Do
-                        </p>
-                    </header>
-
-                    
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-
-
-                                    {{#each tasktopost}}
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>{{task_name}}</td>
-                                        <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
-                                    </tr>
-                                    {{/each}}
-
-
-                                </tbody>
-                            </table>
+            <div class="column is-9">
+                <section class="info-tiles">
+                    <div class="tile is-ancestor has-text-centered">
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">Date</p>
+                                <p class="subtitle">9/11/22</p>
+                            </article>
+                        </div>
+                        
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <div class="buttons">
+                                    <button class="button is-fullwidth is-success" id="add-task-btn">Add a Task</button>
+                                    <button class="button is-fullwidth is-info"id="create-task-btn">Create Custom Task</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">Tears</p>
+                                <p class="subtitle">29</p>
+                            </article>
                         </div>
                     </div>
+                </section>
 
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="card events-card">
+                            <header class="card-header">
+                                <p class="card-header-title is-centered">
+                                    To Do
+                                </p>
+                            </header>
 
-                </div>
-            </div>
-
-            <!-- ********************* DONE TASKS ********************** -->
-            <div class="column is-6">
-                <div class="card events-card">
-                    <header class="card-header">
-                        <p class="card-header-title is-centered">
-                            Done
-                        </p>
-                    </header>
-
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Mow Lawn</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Run</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Quit job</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Email Bob</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Walk Dog</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td>Bowling with Jack</td>
-                                        <td class="level-right"><a class="button is-small is-light is-warning" href="#">Undo</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="card-table">
+                                <div class="content">
+                                    <table class="table is-fullwidth is-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Make Bed</td>
+                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Shower</td>
+                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Leg Day</td>
+                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Wash Dishes</td>
+                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Quit Life</td>
+                                                <td class="level-right"><a class="button is-small is-light is-primary" href="#">Done</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>  
+                    </div>                         
         </div>
     </div>
 </div>
