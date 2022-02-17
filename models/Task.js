@@ -1,6 +1,4 @@
-// import sequelize's Model and Datatypes
 const { Model, DataTypes } = require('sequelize');
-// import db connection
 const sequelize = require('../config/connection');
 
 class Task extends Model {}
@@ -35,3 +33,5 @@ Task.init(
 );
 
 module.exports = Task;
+
+
