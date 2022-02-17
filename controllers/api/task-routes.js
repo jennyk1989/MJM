@@ -1,19 +1,23 @@
 const router = require('express').Router();
 const { Category, Task } = require('../../models');
 
-
+//rendering tasks in database
 router.get('/', (req, res) => {
-
-  Task.findAll({ 
-    include: [
-      {
-        model: Category,
-        attributes: ['id', 'category_name']
-      }
-    ]
-  })
-  .then(data => res.json(data))
-  .catch((err) => res.status(500).json(err));
+    Task.findAll({
+        // where: {
+        //     user_id: req.session.user_id
+        // },
+        attributes: ['id','task_name'],
+    })
+    .then(dbTasks => {
+        //first serialize the dbTasks data
+        const tasktopost = dbTasks.map(task => task.get({plain: true}));
+        res.render('dashboard', {tasktopost})
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
 });
 
 router.get('/:id', (req, res) => {
@@ -21,28 +25,26 @@ router.get('/:id', (req, res) => {
       where: {
         id: req.params.id
       },
-      include: [ 
-        {
-          model: Category,
-          attributes: ['id', 'category_name']
-        }
-      ]
+      attributes: ['id', 'task_name']
     })
     .then(data => res.json(data))
     .catch((err) => res.status(500).json(err));
   });
-  
-  // route for adding a task (body received from add-task.js)
-  router.post('/', (req, res) => {
+
+// creating custom task (body received from add-task.js)
+router.post('/', (req, res) => {
     Task.create({
-      task_name: req.body.task_name
+        task_name: req.body.task_name
     })
-    .then((taskdata) => res.status(200).json(taskdata))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-  });
+    .then(data => {
+        console.log(data);
+        res.json(data)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
   
   router.put('/:id', (req, res) => {
     Task.update(req.body, {
@@ -55,16 +57,21 @@ router.get('/:id', (req, res) => {
         res.status(400).json(err);
       });
   });
-  
-  router.delete('/:id', (req, res) => {
+
+// removing a task 
+router.delete('/:id', (req,res) => {
     Task.destroy({
-      where: {
-        id: req.params.id
-      }
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        console.log(data);
+        res.json(data);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
     })
-    .then(taskdata => res.json(taskdata))
-    .catch((err) => res.status(500).json(err));
-  });
-  
-  module.exports = router;
+});
+
+module.exports = router;
   

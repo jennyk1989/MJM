@@ -6,11 +6,10 @@ async function markDone(event) {
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/api/task/${id}`, {
-        method: 'PUT',
+    const response = await fetch(`/dashboard/`, {
+        method: 'DELETE',
         body: JSON.stringify({
-            task_name,
-            category_id
+            id
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -23,6 +22,4 @@ async function markDone(event) {
     }
 };
 
-document.getElementById('todo-task').onclick(markDone);
-
-// id for done = "done-task"
+document.getElementById('done-btn').addEventListener('click', markDone);
