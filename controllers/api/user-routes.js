@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Category, Task } = require('../../models');
+const { User, Task } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
     User.findOne({
         where: {
             email: req.body.email
@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
 });
 
 
-router.post('/logout', withAuth, (req, res) => {
+router.post('/', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();

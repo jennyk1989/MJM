@@ -8,7 +8,7 @@ router.use('/api', apiRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/', homeRoutes);
 router.use((req, res) => {
-  res.statusCode;
+  res.status(404).end();
 });
 
 module.exports = router;

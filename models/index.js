@@ -1,17 +1,17 @@
 const Task = require('./Task');
-const Category = require('./Category');
+const User = require('./User');
 
-Task.belongsTo(Category, { 
-  foreignKey: 'category_id'
+Task.belongsTo(User, { 
+  foreignKey: 'user_id'
 });
 
-Category.hasMany(Task, {
-  foreignKey: 'category_id' 
+User.hasMany(Task, {
+  foreignKey: 'user_id' 
 });
 
 module.exports = {
   Task,
-  Category,
+  User,
 };
 
 

@@ -2,19 +2,19 @@ const { Task } = require('../models');
 
 const taskData = [
   {
-    task_name: 'Arm Day'
+    task_name: 'Clean'
   },
   {
-    task_name: 'Lego Day'
+    task_name: 'Walk the dog'
   },
   {
-    task_name: 'Leg Day'
+    task_name: 'Check the mail'
   },
   {
-    task_name: 'Abs Day'
+    task_name: 'Paint kitchen'
   },
   {
-    task_name: 'Hay Day'
+    task_name: 'Fix gate'
   },
 ];
 

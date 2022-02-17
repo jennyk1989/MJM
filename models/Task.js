@@ -15,17 +15,17 @@ Task.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'category',
-        key: 'id',
+        model: 'user',
+        key: 'id'
       }
     }
   },
+  
   {
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'task',
