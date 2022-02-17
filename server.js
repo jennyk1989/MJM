@@ -36,5 +36,7 @@ app.set('view engine', 'handlebars');
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: true }).then(() => { 
-  app.listen(PORT, () => console.log('App now listening!'));
+  app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 });
