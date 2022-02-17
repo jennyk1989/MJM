@@ -24,8 +24,23 @@ router.get('/', (req, res) => {
     })
 });
 
-//rendering add a task card
-router.get('/addtasks', (req, res) => {
-  res.render('new-tasks');
+// adding a task
+
+
+// creating custom task (body received from add-task.js)
+router.post('/', (req, res) => {
+    Task.create({
+        task_name: req.body.task_name
+    })
+    .then(data => res.json(data))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
 })
+
+// removing a task 
+
+
+
 module.exports = router;
