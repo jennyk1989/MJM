@@ -2,9 +2,9 @@
 async function createCustomTask(event) {
     event.preventDefault();
 
-    const task_name = document.querySelector('input[name="task-name"]').ariaValueMax;
+    const task_name = document.querySelector('.input').value;
 
-    const response = await fetch(`/api/tasks`, {
+    const response = await fetch(`/dashboard`, {
         method: 'POST',
         body: JSON.stringify({
             task_name
@@ -24,4 +24,4 @@ async function createCustomTask(event) {
 // selecting a task
 
 
-document.querySelector("#create-task-btn").addEventListener('click', createCustomTask);
+document.getElementById("create-task-btn").addEventListener('click', createCustomTask);
