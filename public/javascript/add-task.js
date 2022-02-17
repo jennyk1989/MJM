@@ -24,4 +24,5 @@ async function createCustomTask(event) {
 // selecting a task
 
 
+
 document.getElementById("create-task-btn").addEventListener('click', createCustomTask);

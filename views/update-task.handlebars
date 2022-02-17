@@ -1,0 +1,31 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="column is-12">
+            <div class="card m-3">
+                <header class="card-header has-background-info">
+                    <p class="card-header-title has-text-white">Update Task</p>
+                </header>
+                {{!-- <!-- task input --> --}}
+                {{!-- tasktoedit from dashboard-routes --}}
+                <div class="card-content">
+                    <div class="field">
+                        <label class="label">New Task</label>
+                        <div class="control">
+                            <input class="input" id="updated-task" type="text" placeholder="new task here">
+                        </div>
+                    </div>
+                </div>
+                {{!-- <!-- update & dashboard button --> --}}
+                <div class="card-content">
+                    <div class="buttons">
+                        <button class="button is-success" id="update-btn">Update Task</button>
+                        <button class="button is-warning" id="delete-btn">Return to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>
+
+<script src="/javascript/delete-task.js"></script>
+<script src="/javascript/update.js"></script>

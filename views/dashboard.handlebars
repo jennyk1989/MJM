@@ -134,11 +134,14 @@
                                 <tbody>
                                     {{!--$$$$$$$ tasks from db $$$$$$$--}}
                                     {{#each tasktopost}}
-                                        <tr>
+                                        <tr class="notabulma" onclick="remove(this)">
                                             <td width="5%"><i class="fa fa-bell-o"></i></td>
                                             <td>{{task_name}}</td>
                                             {{!--========== done button ==========--}}
-                                            <td class="level-right"><a class="button is-small is-light is-primary" id="done-button">Done</a></td>
+                                            <td class="level-right">
+                                                <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
+                                                <a class="button is-small is-light is-primary" id="done-btn">Done</a>
+                                            </td>
                                         </tr>
                                     {{/each}}
                                 </tbody>
@@ -151,3 +154,5 @@
     </div>
 </div>
 <script src="/javascript/add-task.js"></script>
+<script src="/javascript/done-task.js"></script>
+<script src="/javascript/update.js"></script>
