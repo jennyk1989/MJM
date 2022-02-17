@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Category, Task } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 router.get('/',  (req, res) => {
     User.findAll({
         attributes: { exclude: ['[password']}
@@ -12,6 +13,7 @@ router.get('/',  (req, res) => {
         res.status(500).json(err);
     });
 });
+
 
 router.get('/:id', (req, res) => {
     User.findOne({
@@ -47,14 +49,13 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// CREATE new user 
+
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     })
-    // store user data during session 
     .then(dbUserData => {
     req.session.save(() => {
         req.session.user_id = dbUserData.id;
@@ -65,6 +66,7 @@ router.post('/', (req, res) => {
         });
     });
 });
+
 
 router.post('/login', (req, res) => {
     User.findOne({
@@ -91,6 +93,7 @@ router.post('/login', (req, res) => {
         });
     });
 });
+
 
 router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
@@ -142,3 +145,8 @@ router.delete('/:id', withAuth, (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
