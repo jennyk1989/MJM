@@ -1,4 +1,3 @@
-// import models
 const Task = require('./Task');
 const Category = require('./Category');
 
