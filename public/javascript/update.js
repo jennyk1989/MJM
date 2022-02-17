@@ -1,7 +1,7 @@
 async function editTask (event) {
     event.preventDefault();
 
-    const task_name = document.getElementById('updated-task').value;
+    const task_name = document.querySelector('#updated-task').value;
     //get the id of the task from the url
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1

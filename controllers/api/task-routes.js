@@ -48,9 +48,10 @@ router.put('edit/:id', (req, res) => {
 });
 
 // removing a task 
-router.delete('edit/:id', (req,res) => {
+router.delete('/dashboard/edit/:id', (req,res) => {
   Task.destroy({
     where: {
+      task_name: req.params.task_name,
       id: req.params.id
     }
   })
