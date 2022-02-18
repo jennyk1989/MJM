@@ -10,10 +10,10 @@
 * [Tests](#Tests)
 * [Questions](#Questions)
 ## Installation 📥
-clone repository
-run npm init
-run npm install
-run npm start
+* clone repository
+* npm init
+* npm install
+* npm start
 ## Usage
 ### Screenshots
 Homepage: 
