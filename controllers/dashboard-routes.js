@@ -52,8 +52,8 @@ router.post('/', withAuth, (req, res) => {
 });
 
 // update/delete task page
-router.get('/edit/:id', withAuth, (req, res) => {
-    Task.findOne({
+router.put('/edit/:id', withAuth, (req, res) => {
+    Task.update({
         where: { id: req.params.id },
         attributes: ['id','task_name'],
         include: [

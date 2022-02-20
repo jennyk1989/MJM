@@ -9,19 +9,19 @@ const app = express();
 const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ helpers });
 
-//const session = require('express-session');
-//const SequelizeStore = require('connect-session-sequelize')(session.Store);
-// create session 
-//const sess = {
-//   secret: "super super secret",
-//   cookie: { originalMaxAge: 600000 },
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   })
-// };
-//app.use(session(sess));
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+//create session 
+const sess = {
+  secret: "super super secret",
+  cookie: { originalMaxAge: 600000 },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+app.use(session(sess));
 // parse requests in JSON format
 app.use(express.json()); 
 // parse requests in url format

@@ -5,7 +5,7 @@ async function loginHandler(event) {
     const password = document.getElementById('password-login').value.trim();
   
     if (username && password) {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/api/users/login', {
         method: 'post',
         body: JSON.stringify({
           username,
@@ -15,7 +15,7 @@ async function loginHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard'); //redirect to dash once logged in 
+        document.location.replace('/dashboard/'); //redirect to dash once logged in 
       } else {
         alert(response.statusText);
       }
@@ -40,8 +40,8 @@ async function signupHandler(event) {
         }); 
     // check the response status (error handling)
     if (response.ok) {
-        console.log('success');
-        document.location.replace('/dashboard'); //redirect to dash once signed up
+        console.log('successful signup');
+        document.location.replace('/dashboard/'); //redirect to dash once signed up
       } else {
         alert(response.statusText);
       }
@@ -50,3 +50,4 @@ async function signupHandler(event) {
 
 document.getElementById('login-btn').addEventListener('click', loginHandler);
 document.getElementById('signup-btn').addEventListener('click', signupHandler);
+ 

@@ -23,7 +23,6 @@ Task.init(
       }
     }
   },
-  
   {
     sequelize,
     freezeTableName: true,
