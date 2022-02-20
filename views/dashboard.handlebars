@@ -78,6 +78,14 @@
                         <div class="content">
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
+                                    <tr class="notabulma" onclick="remove(this)">
+                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                        <td> Finish To Do List</td>
+                                        <td class="level-right">
+                                            <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
+                                            <a class="button is-small is-light is-primary" id="done-btn">Done</a>
+                                        </td>
+                                    </tr>
                                     {{!--$$$$$$$ tasks from db $$$$$$$--}}
                                     {{#each tasktopost}}
                                         <tr class="notabulma" onclick="remove(this)">
@@ -105,55 +113,55 @@
             </header>
             <div class="card-content">
                 <div class="panel is-info is-flex-direction-row" id="task-panel">
-                    <a class="panel-block has-background-success-light" value="workout">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)" name="Work Out">
                         <span class="panel-icon">
                             <i class="fas fa-dumbbell" aria-hidden="true"></i>
                         </span>
                         Work out
                     </a>
-                    <a class="panel-block has-background-success-light" value="clean">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-shower" aria-hidden="true"></i>
                         </span>
                         Clean
                     </a>
-                    <a class="panel-block has-background-success-light" value="study">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-book-reader" aria-hidden="true"></i>
                         </span>
                         Study
                     </a>
-                    <a class="panel-block has-background-success-light" value="walkpet">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-dog" aria-hidden="true"></i>
                         </span>
                         Walk pet
                     </a>
-                    <a class="panel-block has-background-success-light" value="shop">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-shopping-basket" aria-hidden="true"></i>
                         </span>
                         Shop
                     </a>
-                    <a class="panel-block has-background-success-light" value="games">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-gamepad" aria-hidden="true"></i>
                         </span>
                         Play Games
                     </a>
-                    <a class="panel-block has-background-success-light">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
-                            <i class="fas fa-basketball-ball" aria-hidden="watchgame"></i>
+                            <i class="fas fa-basketball-ball" aria-hidden="true"></i>
                         </span>
                         Watch Game
                     </a>
-                    <a class="panel-block has-background-success-light" value="show">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-tv" aria-hidden="true"></i>
                         </span>
                         Watch Show
                     </a>
-                    <a class="panel-block has-background-success-light" value="cook">
+                    <a class="panel-block has-background-success-light" onclick="addSelectedTask(this)">
                         <span class="panel-icon">
                             <i class="fas fa-mitten" aria-hidden="true"></i>
                         </span>
