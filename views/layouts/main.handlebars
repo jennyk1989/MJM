@@ -25,6 +25,17 @@
             </div>
           </div>
         </div>
+
+        <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  {{!-- if logged in, display the logout button --}}
+                  {{#if loggedIn}}
+                  <a class="button is-info" id="logout-btn">Logout</a>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
       </nav>
       
       <section class="hero is-info welcome is-small">

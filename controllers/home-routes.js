@@ -1,18 +1,14 @@
 const router = require('express').Router();
 const { User, Task } = require('../models');
 const sequelize = require('../config/connection');
-const withAuth = require('../utils/auth');
-const fs = require('fs');
 
-router.get('/', (req, res) => {
-    res.render('homepage');
-});
 
 router.get('/',  (req, res) => {
     User.findAll({
         attributes: { exclude: ['[password']}
     })
     .then(data => res.json(data))
+    .then(res.render('homepage'))
     .catch(err => {
         console.log(err); 
         res.status(500).json(err);
@@ -86,7 +82,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
@@ -96,7 +92,7 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -116,7 +112,7 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id

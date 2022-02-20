@@ -3,6 +3,15 @@ const { User, Task } = require('../models');
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
 
+
+//sending users to dash once logged in or signed up
+ router.get('/login', (req, res) => {
+     if(res.session.loggedIn) {
+         res.redirect('/dashboard');
+         return
+     }
+ })
+
 // rendering tasks in database
 router.get('/', (req, res) => {
     Task.findAll({
