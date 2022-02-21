@@ -4,7 +4,7 @@ async function createCustomTask(event) {
 
     const task_name = document.querySelector('.input').value;
 
-    const response = await fetch(`/dashboard`, {
+    const response = await fetch(`/api/tasks`, {
         method: 'POST',
         body: JSON.stringify({
             task_name

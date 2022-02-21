@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Task } = require('../../models');
+const { Task } = require('../../models');
 const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
@@ -9,12 +9,6 @@ router.get('/', (req, res) => {
     Task.findAll({
         where: { user_id: req.session.user_id},
         attributes: ['id','task_name'],
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-        // ]
     })
     .then(data => {
         res.json(data);
@@ -32,12 +26,6 @@ router.get('/:id', (req, res) => {
       id: req.params.id
     },
     attributes: ['id', 'task_name'],
-    // include: [
-    //     {
-    //         model: User,
-    //         attributes: ['username']
-    //     }
-    // ]
   })
   .then(data => res.json(data))
   .catch((err) => res.status(500).json(err));
@@ -47,7 +35,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Task.create({
         task_name: req.body.task_name,
-        //user_id: req.session.user_id
     })
     .then(data => {
         console.log(data);
@@ -82,25 +69,6 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     })
 });
-
-// delete task
-// router.delete('/', (req,res) => {
-//     Task.destroy({
-//         where: {
-//             id: req.body.id
-//         }
-//     })
-//     .then(data => {
-//         if(!data) {
-//             res.status(404).json({ message: 'no task found with this id'});
-//         }
-//         res.redirect('/dashboard')
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     })
-// });
 
 // removing a task as done 
 router.delete('/', (req,res) => {
