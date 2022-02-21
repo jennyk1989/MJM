@@ -5,9 +5,9 @@ const withAuth = require('../../utils/auth');
 // api/users route
 router.get('/',  (req, res) => {
     User.findAll({
-        attributes: { exclude: ['[password']}
+        attributes: { exclude: ['[password'] }
     })
-    .then(data => res.json(data))
+    .then(userdata => res.json(userdata))
     .catch(err => {
         console.log(err); 
         res.status(500).json(err);
@@ -17,26 +17,26 @@ router.get('/',  (req, res) => {
 // api/users/id route to get a single user
 router.get('/:id', (req, res) => {
     User.findOne({
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: ['password'] }, //exclude password for security
         where: {
           id: req.params.id
         },
-      })
-        .then(userdata => {
-            if (!userdata) {
-                res.status(404).json({ message: 'No user found with this id'});
-                return;
-            }
-            res.json(userdata);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    })
+    .then(userdata => {
+        if (!userdata) {
+            res.status(404).json({ message: 'No user found with this id'});
+            return;
+        }
+        res.json(userdata);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 //api/users posting route (creating a user)
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -62,7 +62,7 @@ router.post('/login', (req,res) => {
         }
     })
     .then(userdata => {
-        if (!dauserdatata) {
+        if (!userdata) {
             res.status(400).json({ message: 'No user with that username!'});
             return;
         }
@@ -94,45 +94,45 @@ router.post('/logout', withAuth, (req, res) => {
     }
 });
 
-//update users
-router.put('/:id', withAuth, (req, res) => {
-    User.update(req.body, {
-        individualHooks: true,
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(userdata => {
-        if (!userdata[0]) {
-            res.status(404).json({ message: 'No user found with this id'});
-            return;
-        }
-        res.json(userdata);
-    })
-    .catch(err => {
-        console.log(err); 
-        res.status(500).json(err);
-    });
-});
+// //update users
+// router.put('/:id', withAuth, (req, res) => {
+//     User.update(req.body, {
+//         individualHooks: true,
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     .then(userdata => {
+//         if (!userdata[0]) {
+//             res.status(404).json({ message: 'No user found with this id'});
+//             return;
+//         }
+//         res.json(userdata);
+//     })
+//     .catch(err => {
+//         console.log(err); 
+//         res.status(500).json(err);
+//     });
+// });
 
-router.delete('/:id', withAuth, (req, res) => {
-    User.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then(userdata => {
-            if (!userdata) {
-                res.status(404).json({ message: 'No user found with this id'});
-                return;
-            }
-            res.json(userdata);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+// router.delete('/:id', withAuth, (req, res) => {
+//     User.destroy({
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//         .then(userdata => {
+//             if (!userdata) {
+//                 res.status(404).json({ message: 'No user found with this id'});
+//                 return;
+//             }
+//             res.json(userdata);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// });
 
 module.exports = router;
 

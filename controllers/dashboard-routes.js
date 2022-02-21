@@ -1,18 +1,21 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { User, Task } = require('../models');
 const withAuth = require('../utils/auth');
-const sequelize = require('../config/connection');
 
 
 // rendering user's tasks on the dashboard
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Task.findAll({
         attributes: ['id','task_name'],
     })
     .then(data => {
         //first serialize the dbTasks data
         const tasktopost = data.map(task => task.get({plain: true}));
-        res.render('dashboard', {tasktopost})
+        res.render('dashboard', {
+            tasktopost,
+            loggedIn: req.session.loggedIn
+        });
     })
     .catch(err => {
         console.log(err);
@@ -21,7 +24,7 @@ router.get('/', (req, res) => {
 });
 
 // rendering the update task page
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
     Task.findOne({
         where: { 
             id: req.params.id 
