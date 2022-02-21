@@ -14,13 +14,14 @@ router.get('/',  (req, res) => {
     });
 });
 
-// api/users/id route
+// api/users/id route to get a single user
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
           id: req.params.id
         },
+        //include the user's tasks
         include: [
             {
                 model: Task,
@@ -41,20 +42,20 @@ router.get('/:id', (req, res) => {
         });
 });
 
-//api/users posting route (sign up user and thus creating a user)
+//api/users posting route (creating a user)
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
     })
     .then(data => {
-    req.session.save(() => { //initiate creation of the session
-        req.session.user_id = data.id;
-        req.session.username = data.username;
-        req.session.loggedIn = true;
+        req.session.save(() => { //initiate creation of the session
+            req.session.user_id = data.id;
+            req.session.username = data.username;
+            req.session.loggedIn = true;
 
-        res.json(data); //store the data from the session
-        });
+            res.json(data); //store the data from the session
+            });
     })
     .catch(err => {
         res.status(500).json(err);
@@ -100,6 +101,7 @@ router.post('/logout', withAuth, (req, res) => {
     }
 });
 
+//update users
 router.put('/:id', withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
@@ -138,6 +140,7 @@ router.delete('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+
 module.exports = router;
 
 
