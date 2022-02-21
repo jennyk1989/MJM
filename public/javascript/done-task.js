@@ -1,13 +1,14 @@
 async function taskIsDone(event) {
     
-    let task_name = event.children[1].innerHTML;
-    let allinfo = event;
-    let idstring = event.children[1].id;
+    let parent = event.parentElement;
+    let grandpa = parent.parentElement;
+    let idstring = grandpa.children[1].id;
     let id = parseInt(idstring);
+    let task_name = grandpa.children[1].innerHTML;
     console.log(task_name);
-    console.log(allinfo);
+    console.log(grandpa);
     console.log(id);
-    const response = await fetch(`/dashboard`, {
+    const response = await fetch(`/api/tasks`, {
         method: 'DELETE',
         body: JSON.stringify({
             id,
