@@ -91,7 +91,7 @@
                                             {{!--========== done button ==========--}}
                                             <td class="level-right">
                                                 <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
-                                                <a class="button is-small is-light is-primary" id="done-btn" onclick="taskIsDone(this)">Done</a>
+                                                <a class="button is-small is-light is-primary" id="done-btn" onclick="taskIsDone(this)" onmousedown="party.confetti(this)">Done</a>
                                             </td>
                                         </tr>
                                     {{/each}}
@@ -179,4 +179,4 @@
 <script src="/javascript/select-task.js"></script>
 <script src="/javascript/logout.js"></script>
 <script src="/javascript/done-task.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
