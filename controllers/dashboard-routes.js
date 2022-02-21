@@ -7,21 +7,11 @@ const sequelize = require('../config/connection');
 // rendering user's tasks on the dashboard
 router.get('/', (req, res) => {
     Task.findAll({
-        // where: { 
-        //     user_id: req.session.user_id
-        // },
         attributes: ['id','task_name'],
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-        // ]
     })
     .then(data => {
         //first serialize the dbTasks data
         const tasktopost = data.map(task => task.get({plain: true}));
-        //res.render('dashboard', { tasktopost, loggedIn: true })
         res.render('dashboard', {tasktopost})
     })
     .catch(err => {
@@ -37,17 +27,10 @@ router.get('/edit/:id', (req, res) => {
             id: req.params.id 
         },
         attributes: ['id','task_name'],
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-        // ]
     })
     .then(data => {
         //first serialize the dbTasks data
         const tasktoedit = data.get({plain: true});
-        //res.render('update-task', { tasktoedit, loggedIn: true });
         res.render('update-task', { tasktoedit });
     })
     .catch(err => {

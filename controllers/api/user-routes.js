@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Task } = require('../../models');
+const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // api/users route
@@ -21,20 +21,13 @@ router.get('/:id', (req, res) => {
         where: {
           id: req.params.id
         },
-        //include the user's tasks
-        include: [
-            {
-                model: Task,
-                attributes: ['id', 'task_name']
-            }
-        ]
       })
-        .then(data => {
-            if (!data) {
+        .then(userdata => {
+            if (!userdata) {
                 res.status(404).json({ message: 'No user found with this id'});
                 return;
             }
-            res.json(data);
+            res.json(userdata);
         })
         .catch(err => {
             console.log(err);
@@ -48,13 +41,13 @@ router.post('/', (req, res) => {
         username: req.body.username,
         password: req.body.password
     })
-    .then(data => {
+    .then(userdata => {
         req.session.save(() => { //initiate creation of the session
-            req.session.user_id = data.id;
-            req.session.username = data.username;
+            req.session.user_id = userdata.id;
+            req.session.username = userdata.username;
             req.session.loggedIn = true;
 
-            res.json(data); //store the data from the session
+            res.json(userdata); //store the data from the session
             });
     })
     .catch(err => {
@@ -68,24 +61,24 @@ router.post('/login', (req,res) => {
             username: req.body.username
         }
     })
-    .then(data => {
-        if (!data) {
+    .then(userdata => {
+        if (!dauserdatata) {
             res.status(400).json({ message: 'No user with that username!'});
             return;
         }
         
-        const validPassword = data.checkPassword(req.body.password);
+        const validPassword = userdata.checkPassword(req.body.password);
 
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
         req.session.save(() => {
-            req.session.user_id = data.id;
-            req.session.username = data.username;
+            req.session.user_id = userdata.id;
+            req.session.username = userdata.username;
             req.session.loggedIn = true;
       
-            res.json({ user: data, message: 'You are now logged in!' });
+            res.json({ user: userdata, message: 'You are now logged in!' });
         });
     });
 });
@@ -109,12 +102,12 @@ router.put('/:id', withAuth, (req, res) => {
             id: req.params.id
         }
     })
-    .then(data => {
-        if (!data[0]) {
+    .then(userdata => {
+        if (!userdata[0]) {
             res.status(404).json({ message: 'No user found with this id'});
             return;
         }
-        res.json(data);
+        res.json(userdata);
     })
     .catch(err => {
         console.log(err); 
@@ -128,12 +121,12 @@ router.delete('/:id', withAuth, (req, res) => {
             id: req.params.id
         }
     })
-        .then(data => {
-            if (!data) {
+        .then(userdata => {
+            if (!userdata) {
                 res.status(404).json({ message: 'No user found with this id'});
                 return;
             }
-            res.json(data);
+            res.json(userdata);
         })
         .catch(err => {
             console.log(err);

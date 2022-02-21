@@ -7,7 +7,7 @@ const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
   await seedUsers();
-  console.log('\n----- CATEGORIES SEEDED -----\n');
+  console.log('\n----- USERS SEEDED -----\n');
 
   await seedTasks();
   console.log('\n----- TASKS SEEDED -----\n');
