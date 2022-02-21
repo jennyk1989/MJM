@@ -1,7 +1,7 @@
 # MJM
 ![badge](https://img.shields.io/badge/License-MIT-blue)
 ## Description
-
+A To-Do List application made from Node, Express, Sequelize, MySql, and more. 
 ## Table of Contents 
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -21,6 +21,9 @@ Homepage:
 
 Dashboard:
 <img width="1037" alt="dashboard" src="https://user-images.githubusercontent.com/92952780/154592042-4eb442b3-c2f2-4ced-b675-461c39dcc892.png">
+
+Heroku Link: 
+https://sheltered-woodland-56293.herokuapp.com/dashboard/
 ## Licence 📃
 MIT License
 ## Contribution 💡
