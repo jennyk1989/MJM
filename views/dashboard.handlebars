@@ -78,19 +78,16 @@
                         <div class="content">
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
-                                    <tr class="notabulma" onclick="remove(this)">
-                                        <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                        <td> Finish To Do List</td>
-                                        <td class="level-right">
-                                            <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
-                                            <a class="button is-small is-light is-primary" id="done-btn">Done</a>
-                                        </td>
-                                    </tr>
+
+
+                                    
+
+                                    
                                     {{!--$$$$$$$ tasks from db $$$$$$$--}}
                                     {{#each tasktopost}}
-                                        <tr class="notabulma" onclick="remove(this)">
+                                        <tr class="notabulma" onclick="taskIsDone(this)">
                                             <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>{{task_name}}</td>
+                                            <td id="{{id}}">{{task_name}}</td>
                                             {{!--========== done button ==========--}}
                                             <td class="level-right">
                                                 <a class="button is-small is-light is-primary" href="/dashboard/edit/{{id}}" id="edit-btn">Update</a>
@@ -181,3 +178,5 @@
 <script src="/javascript/add-task.js"></script>
 <script src="/javascript/select-task.js"></script>
 <script src="/javascript/logout.js"></script>
+<script src="/javascript/done-task.js"></script>
+

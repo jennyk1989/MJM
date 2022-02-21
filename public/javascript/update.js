@@ -1,16 +1,16 @@
 async function updateHandler (event) {
     event.preventDefault();
 
-    const task_name = document.querySelector('#updated-task').value;
+    const task_name = document.getElementById('updated-task').value;
     //get the id of the task from the url
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/dashboard/edit/${id}`, {
+    const response = await fetch(`/api/tasks/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            task_name, //send updated task name to server 
+            task_name, //send updated task
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -21,6 +21,8 @@ async function updateHandler (event) {
         document.location.replace('/dashboard/'); //successful update of task? -> redirect to dash
     } else {
         alert(response.statusText);
+        console.log(id);
+        document.location.replace('/dashboard/');
     }
 };
 

@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
 
-// rendering user's tasks in database
+// get all tasks & send as res.json
 router.get('/', (req, res) => {
     Task.findAll({
         where: { user_id: req.session.user_id},
@@ -17,9 +17,7 @@ router.get('/', (req, res) => {
         // ]
     })
     .then(data => {
-        //first serialize the dbTasks data
-        const tasktopost = data.map(task => task.get({plain: true}));
-        res.render('dashboard', {tasktopost, loggedIn: true })
+        res.json(data);
     })
     .catch(err => {
         console.log(err);
@@ -27,22 +25,29 @@ router.get('/', (req, res) => {
     })
 });
 
-// get a single task
+// get a single task by its id
 router.get('/:id', (req, res) => {
   Task.findOne({
     where: {
       id: req.params.id
     },
-    attributes: ['id', 'task_name']
+    attributes: ['id', 'task_name'],
+    // include: [
+    //     {
+    //         model: User,
+    //         attributes: ['username']
+    //     }
+    // ]
   })
   .then(data => res.json(data))
   .catch((err) => res.status(500).json(err));
 });
 
 // creating custom task (body received from add-task.js)
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     Task.create({
-        task_name: req.body.task_name
+        task_name: req.body.task_name,
+        //user_id: req.session.user_id
     })
     .then(data => {
         console.log(data);
@@ -54,40 +59,55 @@ router.post('/', withAuth, (req, res) => {
     })
 });
 
-// update/delete task page
-router.put('/edit/:id', withAuth, (req, res) => {
-    Task.update({ 
+// update task
+router.put('/:id', (req, res) => {
+    Task.update({
         task_name: req.body.task_name
-    },
-
-    {
-        where: { id: req.params.id },
-        attributes: ['id','task_name'],
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     },
-        // ]
+      },
+      {
+        where: {
+          id: req.params.id
+        }
     })
     .then(data => {
-        //first serialize the dbTasks data
-        const tasktoedit = data.get({plain: true});
-        //res.render('update-task', {tasktoedit, loggedIn: true});
-        res.render('update-task', {tasktoedit});
+        if(!data) {
+            res.status(404).json({ message: 'no task found with this id'});
+        }
+        
+        res.json(data);
+        return Task.findall({ where: {id: req.params.id}});
     })
-    .catch(err => {
+    .catch(err => {å
         console.log(err);
         res.status(500).json(err);
     })
 });
 
+// delete task
+// router.delete('/', (req,res) => {
+//     Task.destroy({
+//         where: {
+//             id: req.body.id
+//         }
+//     })
+//     .then(data => {
+//         if(!data) {
+//             res.status(404).json({ message: 'no task found with this id'});
+//         }
+//         res.redirect('/dashboard')
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     })
+// });
+
 // removing a task as done 
-router.delete('/dashboard/edit/:id', (req,res) => {
+router.delete('/', (req,res) => {
   Task.destroy({
     where: {
-        task_name: req.params.task_name,
-        id: req.params.id
+        task_name: req.body.task_name,
+        id: req.body.id
     }
   })
   .then(data => {

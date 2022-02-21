@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
 
 
-// rendering user's tasks in database
+// rendering user's tasks on the dashboard
 router.get('/', (req, res) => {
     Task.findAll({
         // where: { 
@@ -30,53 +30,30 @@ router.get('/', (req, res) => {
     })
 });
 
-// creating custom task (body received from add-task.js)
-router.post('/', (req, res) => {
-    Task.create({
-        task_name: req.body.task_name
-    })
-    .then(data => {
-        console.log(data);
-        res.json(data)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-});
-
-// update/delete task page
+// rendering the update task page
 router.get('/edit/:id', (req, res) => {
     Task.findOne({
-        where: { id: req.params.id },
-        attributes: ['id','task_name']
+        where: { 
+            id: req.params.id 
+        },
+        attributes: ['id','task_name'],
+        // include: [
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
     .then(data => {
         //first serialize the dbTasks data
         const tasktoedit = data.get({plain: true});
-        res.render('update-task', {tasktoedit})
+        //res.render('update-task', { tasktoedit, loggedIn: true });
+        res.render('update-task', { tasktoedit });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
-});
-
-// removing a task as done 
-router.delete(':id', (req,res) => {
-  Task.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(data => {
-    console.log(data);
-    res.json(data);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
 });
 
 module.exports = router;
