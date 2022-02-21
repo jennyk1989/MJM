@@ -20,8 +20,6 @@ async function updateHandler (event) {
     if (response.ok) {
         document.location.replace('/dashboard/'); //successful update of task? -> redirect to dash
     } else {
-        alert(response.statusText);
-        console.log(id);
         document.location.replace('/dashboard/');
     }
 };

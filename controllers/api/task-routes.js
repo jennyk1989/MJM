@@ -60,11 +60,9 @@ router.put('/:id', (req, res) => {
         if(!data) {
             res.status(404).json({ message: 'no task found with this id'});
         }
-        
         res.json(data);
-        return Task.findall({ where: {id: req.params.id}});
     })
-    .catch(err => {å
+    .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
